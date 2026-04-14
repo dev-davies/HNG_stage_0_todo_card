@@ -1,15 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo Card — Demo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Card</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <article
+    data-testid="test-todo-card"
+    id="todo-card"
+    class="w-full max-w-[450px] bg-white rounded-2xl border border-gray-100 shadow-md flex flex-col gap-5 p-6 box-border overflow-hidden break-words transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+  >
+
+    <header class="flex items-start justify-between gap-3">
+      <h2
+        data-testid="test-todo-title"
+        id="todo-title"
+        class="m-0 text-[1.125rem] font-bold leading-snug tracking-tight text-gray-900 transition-all duration-300"
+      >
+        Drink more Coke
+      </h2>
+
+      <span
+        data-testid="test-todo-priority"
+        id="todo-priority"
+        class="shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[0.6875rem] font-semibold tracking-widest whitespace-nowrap bg-red-50 text-red-700"
+        aria-label="Priority: High"
+      >
+        High
+      </span>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <p
+        data-testid="test-todo-description"
+        id="todo-description"
+        class="m-0 text-[0.9375rem] leading-relaxed text-gray-600 transition-opacity duration-300"
+      >
+        Ensure there's a steady supply of ice-cold Coke in the fridge to stay refreshed, boost productivity, and enjoy the crisp, bubbly feeling throughout all coding sessions.
+      </p>
+
+      <footer class="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <time
+          data-testid="test-todo-due-date"
+          id="todo-due-date"
+          class="text-[0.8125rem] font-medium text-gray-500 whitespace-nowrap"
+        >
+          Due: April 16, 2026
+        </time>
+
+        <time
+          data-testid="test-todo-time-remaining"
+          id="todo-time-remaining"
+          aria-live="polite"
+          class="text-[0.8125rem] font-medium text-gray-500 whitespace-nowrap"
+        >
+          <!-- injected by JS -->
+        </time>
+
+        <span
+          data-testid="test-todo-status"
+          id="todo-status"
+          role="status"
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all duration-300 bg-blue-50 text-blue-700"
+        >
+          In Progress
+        </span>
+      </footer>
+    </section>
+
+    <ul
+      data-testid="test-todo-tags"
+      role="list"
+      aria-label="Tags"
+      class="flex flex-wrap gap-1.5 list-none m-0 p-0"
+    >
+      <li data-testid="test-todo-tag-personal" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide transition-all duration-150 cursor-default hover:scale-105 bg-gray-100 text-gray-700">personal</li>
+      <li data-testid="test-todo-tag-urgent" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide transition-all duration-150 cursor-default hover:scale-105 bg-rose-50 text-rose-700">urgent</li>
+      <li data-testid="test-todo-tag-refreshment" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide transition-all duration-150 cursor-default hover:scale-105 bg-gray-100 text-gray-700">refreshment</li>
+    </ul>
+
+    <div class="flex items-center gap-2.5 pt-1 border-t border-gray-100">
+      <label
+        for="todo-complete-1"
+        class="text-[0.8125rem] font-medium text-gray-500 cursor-pointer select-none transition-colors duration-150 hover:text-gray-900"
+      >
+        Mark as complete
+      </label>
+
+      <input
+        id="todo-complete-1"
+        data-testid="test-todo-complete-toggle"
+        type="checkbox"
+        aria-label="Mark 'Drink more Coke' as complete"
+        class="w-[18px] h-[18px] shrink-0 cursor-pointer accent-indigo-600 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      />
+
+      <div class="ml-auto flex gap-2">
+        <button
+          data-testid="test-todo-edit-button"
+          id="btn-edit"
+          type="button"
+          aria-label="Edit todo: Drink more Coke"
+          class="inline-flex items-center justify-center px-4 py-1.5 rounded-[10px] bg-gray-100 text-gray-700 text-[0.8125rem] font-semibold transition-all duration-150 hover:bg-gray-200 hover:text-gray-900 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
+          Edit
+        </button>
+
+        <button
+          data-testid="test-todo-delete-button"
+          id="btn-delete"
+          type="button"
+          aria-label="Delete todo: Drink more Coke"
+          class="inline-flex items-center justify-center px-4 py-1.5 rounded-[10px] bg-red-50 text-red-700 text-[0.8125rem] font-semibold transition-all duration-150 hover:bg-red-100 hover:text-red-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+
+  </article>
+
+  <script src="./script.js"></script>
+</body>
 </html>
